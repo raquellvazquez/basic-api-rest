@@ -1,6 +1,11 @@
 const express =  require('express');
 
 const Joi = require('@hapi/joi');
+const morgan = require('morgan');
+
+const config = require('config');
+
+// const logger = require('./logger');
 
 /**
  * Instancia de express
@@ -12,6 +17,26 @@ const app = express();
  */
 
 app.use(express.json());
+
+app.use(express.urlencoded({extended: true}));
+
+app.use(express.static('public'));
+
+/**
+ * Configuración de entornos
+ */
+console.log('Aplicacion' + config.get('nombre'));
+console.log('Base de datos server' + config.get('dbConfig.host'))
+/**
+ * Midellware de 3o
+ */
+if(app.get('env') === 'development') { 
+    app.use(morgan('tiny'));
+
+    console.log('Morgan habilitado')
+}
+
+// app.use(logger);
 
 const usuarios = [
     {

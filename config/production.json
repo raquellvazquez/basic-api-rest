@@ -1,0 +1,8 @@
+{
+    "nombre" : "Api rest express - Produccion",
+    "dbConfig": {
+        "host": "prod-db-server",
+        "port": 5984,
+        "dbName": "customers"
+    }
+}
